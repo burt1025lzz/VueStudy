@@ -1,6 +1,6 @@
-# vue
+# My Vue study
 
-> A Vue.js project
+> 仿去哪网电商实战
 
 ## Build Setup
 
