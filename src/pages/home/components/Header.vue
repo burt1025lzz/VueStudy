@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <div class="header-left">
+      <!--      使用iconfont库-->
       <div class="iconfont back-icon">&#xe624;</div>
     </div>
     <div class="header-input">
@@ -21,7 +22,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+/* css引入使用@快捷目录时,前面要加上~
+   此处css为快捷指向src/assets/styles,可以在/build/webpack.base.conf.js中定义 */
 @import "~css/varibles.styl"
+
+// stylus语法可以省略 {} : ; 但是要注意缩进
 .header
   display flex
   line-height .86rem

@@ -6,6 +6,7 @@ import router from './router'
 import fastClick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// 此处css为快捷指向 src/assets/styles
 import 'css/reset.css'
 import 'css/border.css'
 import 'css/iconfont.css'
@@ -19,6 +20,6 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
