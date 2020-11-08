@@ -1,15 +1,16 @@
 <template>
+  <!--  通过属性的方式向子组件传值-->
   <div>
     <!--    页面头部组件-->
-    <home-header></home-header>
+    <home-header :city="city"></home-header>
     <!--    轮播图组件-->
-    <home-swiper></home-swiper>
+    <home-swiper :list="swiperList"></home-swiper>
     <!--    图标区域组件-->
-    <home-icons></home-icons>
+    <home-icons :list="iconList"></home-icons>
     <!--    热销推荐组件-->
-    <home-recommend></home-recommend>
+    <home-recommend :list="recommendList"></home-recommend>
     <!--    周末游组件-->
-    <home-weekend></home-weekend>
+    <home-weekend :list="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -23,12 +24,22 @@ import axios from 'axios'
 
 export default {
   name: 'Home',
+  // 在模板中导入子组件
   components: {
     HomeHeader,
     HomeSwiper,
     HomeIcons,
     HomeRecommend,
     HomeWeekend
+  },
+  data () {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    }
   },
   mounted () {
     this.getHomeInfo()
@@ -41,7 +52,16 @@ export default {
         .then(this.getHomeInfoSuc)
     },
     getHomeInfoSuc (res) {
-      console.log(res)
+      res = res.data
+      // 如果返回值为true 并且data数据存在
+      if (res.code && res.data) {
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
     }
   }
 }

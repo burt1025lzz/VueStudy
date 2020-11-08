@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="showSwiper">
       <!--      使用v-for指令循环输出-->
-      <swiper-slide v-for="item of imgList" :key="item.id">
+      <swiper-slide v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl"/>
       </swiper-slide>
       <!--      轮播按钮-->
@@ -14,6 +14,10 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  // 从父组件获取数据
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
@@ -21,21 +25,16 @@ export default {
         pagination: '.swiper-pagination',
         // 是否循环
         loop: true
-      },
-      // 图片路径及key值
-      imgList: [{
-        id: '001',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1712/91/a275569091681d02.jpg_640x200_0519ccb9.jpg'
-      }, {
-        id: '002',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1802/42/7c92b9a381e46402.jpg_640x200_1cdce2a4.jpg'
-      }, {
-        id: '003',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg'
-      }, {
-        id: '004',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1802/51/e78f936a5b404102.jpg_640x200_c14f0b3a.jpg'
-      }]
+        // 是否自动滚动
+        // autoplay: true
+      }
+    }
+  },
+  computed: {
+    // 因为页面加载时,还没有获取到父组件传过来的值
+    // 使用计算属性判断list.length的长度,从而判断数据是否传过来
+    showSwiper () {
+      return this.list.length
     }
   }
 }
