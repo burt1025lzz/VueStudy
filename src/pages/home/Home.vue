@@ -19,6 +19,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -28,6 +29,20 @@ export default {
     HomeIcons,
     HomeRecommend,
     HomeWeekend
+  },
+  mounted () {
+    this.getHomeInfo()
+  },
+  methods: {
+    getHomeInfo () {
+      // 此处将访问/api的路径重定向到/static/mock中
+      // 配置信息在/config/index.js中
+      axios.get('/api/index.json')
+        .then(this.getHomeInfoSuc)
+    },
+    getHomeInfoSuc (res) {
+      console.log(res)
+    }
   }
 }
 </script>
