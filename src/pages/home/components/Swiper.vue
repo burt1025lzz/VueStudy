@@ -1,11 +1,21 @@
 <template>
   <div class="wrapper">
     <swiper :options="swiperOption">
-      <swiper-slide class="swiper-img">
-        <img src="https://imgs.qunarzz.com/sight/source/1811/15/66f14e0fd6fbb.jpg_r_640x214_5d69f21d.jpg" alt="">
+      <swiper-slide>
+        <img class="swiper-img"
+             src="http://img1.qunarzz.com/piao/fusion/1712/91/a275569091681d02.jpg_640x200_0519ccb9.jpg"/>
       </swiper-slide>
-      <swiper-slide class="swiper-img">
-        <img src="https://imgs.qunarzz.com/sight/source/1811/b8/5d599bbdcf8b57.jpg_r_640x214_2ee055e3.jpg" alt="">
+      <swiper-slide>
+        <img class="swiper-img"
+             src="http://img1.qunarzz.com/piao/fusion/1802/42/7c92b9a381e46402.jpg_640x200_1cdce2a4.jpg"/>
+      </swiper-slide>
+      <swiper-slide>
+        <img class="swiper-img"
+             src="http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg"/>
+      </swiper-slide>
+      <swiper-slide>
+        <img class="swiper-img"
+             src="http://img1.qunarzz.com/piao/fusion/1802/51/e78f936a5b404102.jpg_640x200_c14f0b3a.jpg"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -18,9 +28,7 @@ export default {
   data () {
     return {
       swiperOption: {
-        pagination: {
-          el: '.swiper-pagination'
-        }
+        pagination: '.swiper-pagination'
       }
     }
   }
@@ -28,12 +36,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .wrapper
-    overflow hidden
+.wrapper >>> .swiper-pagination-bullet-active
+  background #fff
+.wrapper
+  overflow hidden
+  width 100%
+  height 0
+  padding-bottom 31.25%
+  background #ccc
+
+  .swiper-img
     width 100%
-    height 0
-    padding-bottom 31.25%
-    background #ccc
-    .swiper-img
-      width 100%
 </style>
