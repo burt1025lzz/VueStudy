@@ -35,7 +35,7 @@ export default {
 // stylus语法可以省略 {} : ; 但是要注意缩进
 .header
   display flex
-  line-height .86rem
+  line-height $headerHeight
   background $bgColor
   color #fff
 
@@ -61,7 +61,7 @@ export default {
     width 1.24rem
     float right
     text-align center
-    color #fff
+    color $linkTextColor
 
     .arrow-icon
       margin-left -.04rem
