@@ -24,9 +24,9 @@ export default {
         // 是否显示底部轮播按钮
         pagination: '.swiper-pagination',
         // 是否循环
-        loop: true
-        // 是否自动滚动
-        // autoplay: true
+        loop: true,
+        // 是否自动滚动,滚动速度
+        autoplay: 5000
       }
     }
   },
