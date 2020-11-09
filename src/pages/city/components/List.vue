@@ -95,6 +95,10 @@ export default {
   mounted () {
     // 通过$refs找到ref属性为wrapper的对应DOM元素
     this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  // 解决个别情况无法滚动问题
+  updated () {
+    this.scroll.refresh()
   }
 }
 </script>
