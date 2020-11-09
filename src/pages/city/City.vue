@@ -4,18 +4,22 @@
     <city-header></city-header>
     <!--    城市列表搜索组件-->
     <city-search></city-search>
+    <!--    城市列表项组件-->
+    <city-list></city-list>
   </div>
 </template>
 
 <script>
 import CityHeader from './components/Header'
 import CitySearch from './components/Search'
+import CityList from './components/List'
 
 export default {
   name: 'City',
   components: {
     CityHeader,
-    CitySearch
+    CitySearch,
+    CityList
   }
 }
 </script>
