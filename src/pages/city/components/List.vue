@@ -14,72 +14,23 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="btn-list">
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
+          <div class="btn-wrapper" v-for="item of hotCities" :key="item.id">
+            <div class="btn">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
+      <!--      循环遍历对象时,第二项是key,数组则是index-->
+      <!--      只要不是在一个循环层级,key值重复也无伤大雅,但尽量避免-->
+      <div class="area" v-for="(cityItem, key) of cities" :key="key">
+        <div class="title border-topbottom">{{ key }}</div>
         <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
+          <div
+            class="item border-bottom"
+            v-for="item of cityItem"
+            :key="item.id"
+          >
+            {{ item.name }}
+          </div>
         </div>
       </div>
     </div>
@@ -91,6 +42,10 @@ import BScroll from 'better-scroll'
 
 export default {
   name: 'CityList',
+  props: {
+    hotCities: Array,
+    cities: Object
+  },
   // DOM加载完毕后执行
   mounted () {
     // 通过$refs找到ref属性为wrapper的对应DOM元素
