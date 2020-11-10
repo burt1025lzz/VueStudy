@@ -60,6 +60,7 @@ export default {
   updated () {
     this.scroll.refresh()
   },
+  // 通过watch监听器监听letter的变化
   watch: {
     letter () {
       if (this.letter) {
