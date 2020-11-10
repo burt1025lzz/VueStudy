@@ -1,6 +1,11 @@
 <template>
   <ul class="list">
-    <li v-for="(item, key) of cities" :key="key">{{ key }}</li>
+    <li
+      v-for="(item, key) of cities"
+      :key="key"
+      @click="handleClick"
+    >{{ key }}
+    </li>
   </ul>
 </template>
 
@@ -9,6 +14,12 @@ export default {
   name: 'CityAlphabet',
   props: {
     cities: Object
+  },
+  methods: {
+    handleClick (e) {
+      // 向父级元素传递数据
+      this.$emit('change', e.target.innerHTML)
+    }
   }
 }
 </script>

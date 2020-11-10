@@ -5,9 +5,14 @@
     <!--    城市列表搜索组件-->
     <city-search></city-search>
     <!--    城市列表项组件-->
-    <city-list :cities="cities" :hotCities="hotCities"></city-list>
+    <city-list
+      :cities="cities"
+      :hotCities="hotCities"
+      :letter="letter"
+    ></city-list>
     <!--    城市列表字母组件-->
-    <city-alphabet :cities="cities"></city-alphabet>
+    <!--    父组件上通过监听方法获取子组件传值-->
+    <city-alphabet :cities="cities" @change="handleChange"></city-alphabet>
   </div>
 </template>
 
@@ -29,7 +34,8 @@ export default {
   data () {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letter: ''
     }
   },
   methods: {
@@ -44,6 +50,9 @@ export default {
         this.cities = data.cities
         this.hotCities = data.hotCities
       }
+    },
+    handleChange (letter) {
+      this.letter = letter
     }
   },
   mounted () {

@@ -21,7 +21,11 @@
       </div>
       <!--      循环遍历对象时,第二项是key,数组则是index-->
       <!--      只要不是在一个循环层级,key值重复也无伤大雅,但尽量避免-->
-      <div class="area" v-for="(cityItem, key) of cities" :key="key">
+      <div class="area"
+           v-for="(cityItem, key) of cities"
+           :key="key"
+           :ref="key"
+      >
         <div class="title border-topbottom">{{ key }}</div>
         <div class="item-list">
           <div
@@ -44,7 +48,8 @@ export default {
   name: 'CityList',
   props: {
     hotCities: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   // DOM加载完毕后执行
   mounted () {
@@ -54,6 +59,17 @@ export default {
   // 解决个别情况无法滚动问题
   updated () {
     this.scroll.refresh()
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        // 因为scrollToElement方法内部要传入DOM元素
+        // 通过$refs找到跟列表中一致的元素
+        // 注意此处要加上.trim方法去掉空格
+        const element = this.$refs[this.letter.trim()][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
