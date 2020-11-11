@@ -3,7 +3,7 @@
     <!--    城市列表头部组件-->
     <city-header></city-header>
     <!--    城市列表搜索组件-->
-    <city-search></city-search>
+    <city-search :cities="cities"></city-search>
     <!--    城市列表项组件-->
     <city-list
       :cities="cities"
