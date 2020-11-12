@@ -8,7 +8,7 @@
         <div class="btn-list">
           <div class="btn-wrapper">
             <!--            使用vuex获取当前城市数据-->
-            <div class="btn">{{ this.$store.state.city }}</div>
+            <div class="btn">{{ this.currentCity }}</div>
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'CityList',
@@ -56,6 +57,12 @@ export default {
     hotCities: Array,
     cities: Object,
     letter: String
+  },
+  computed: {
+    // mapState也可传入对象
+    ...mapState({
+      currentCity: 'city'
+    })
   },
   // DOM加载完毕后执行
   mounted () {
@@ -68,10 +75,13 @@ export default {
       // 因为此处业务逻辑较简单,所以直接使用commit
       // 否则应该使用dispatch方法触发actions容器
       // 再通过actions容器触发commit方法
-      this.$store.commit('changeCity', city)
+      // this.$store.commit('changeCity', city)
+      // 可使用mapMutations方法简化
+      this.changeCity(city)
       // vue中路由跳转的方法
       this.$router.push('/')
-    }
+    },
+    ...mapMutations(['changeCity'])
   },
   // 解决个别情况无法滚动问题
   updated () {

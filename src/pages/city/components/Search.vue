@@ -28,6 +28,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'CitySearch',
@@ -52,10 +53,13 @@ export default {
       // 因为此处业务逻辑较简单,所以直接使用commit
       // 否则应该使用dispatch方法触发actions容器
       // 再通过actions容器触发commit方法
-      this.$store.commit('changeCity', city)
+      // this.$store.commit('changeCity', city)
+      // 可使用mapMutations方法简化
+      this.changeCity(city)
       // vue中路由跳转的方法
       this.$router.push('/')
-    }
+    },
+    ...mapMutations(['changeCity'])
   },
   watch: {
     keyword () {
