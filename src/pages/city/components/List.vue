@@ -67,7 +67,9 @@ export default {
   // DOM加载完毕后执行
   mounted () {
     // 通过$refs找到ref属性为wrapper的对应DOM元素
-    this.scroll = new BScroll(this.$refs.wrapper)
+    this.scroll = new BScroll(this.$refs.wrapper, {
+      click: true
+    })
   },
   methods: {
     handleCityClick (city) {
