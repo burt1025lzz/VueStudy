@@ -16,6 +16,7 @@
           v-for="item of list"
           :key="item.id"
           class="search-item border-bottom"
+          @click="handleCityClick(item.name)"
         >
           {{ item.name }}
         </li>
@@ -43,6 +44,17 @@ export default {
   computed: {
     hasNoData () {
       return !this.list.length
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      // 通过commit方法触发vuex修改数据
+      // 因为此处业务逻辑较简单,所以直接使用commit
+      // 否则应该使用dispatch方法触发actions容器
+      // 再通过actions容器触发commit方法
+      this.$store.commit('changeCity', city)
+      // vue中路由跳转的方法
+      this.$router.push('/')
     }
   },
   watch: {

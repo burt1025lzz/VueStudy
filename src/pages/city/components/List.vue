@@ -15,7 +15,11 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="btn-list">
-          <div class="btn-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="btn-wrapper"
+               v-for="item of hotCities"
+               :key="item.id"
+               @click="handleCityClick(item.name)"
+          >
             <div class="btn">{{ item.name }}</div>
           </div>
         </div>
@@ -33,6 +37,7 @@
             class="item border-bottom"
             v-for="item of cityItem"
             :key="item.id"
+            @click="handleCityClick(item.name)"
           >
             {{ item.name }}
           </div>
@@ -56,6 +61,17 @@ export default {
   mounted () {
     // 通过$refs找到ref属性为wrapper的对应DOM元素
     this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  methods: {
+    handleCityClick (city) {
+      // 通过commit方法触发vuex修改数据
+      // 因为此处业务逻辑较简单,所以直接使用commit
+      // 否则应该使用dispatch方法触发actions容器
+      // 再通过actions容器触发commit方法
+      this.$store.commit('changeCity', city)
+      // vue中路由跳转的方法
+      this.$router.push('/')
+    }
   },
   // 解决个别情况无法滚动问题
   updated () {
