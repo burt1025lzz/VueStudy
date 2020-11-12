@@ -10,7 +10,8 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        {{ city }}
+        <!--    使用vuex获取当前城市数据-->
+        {{ this.$store.state.city }}
         <i class="iconfont arrow-icon">&#xe62a;</i>
       </div>
     </router-link>
@@ -19,11 +20,7 @@
 
 <script>
 export default {
-  name: 'HomeHeader',
-  // 从父组件获取数据
-  props: {
-    city: String
-  }
+  name: 'HomeHeader'
 }
 </script>
 

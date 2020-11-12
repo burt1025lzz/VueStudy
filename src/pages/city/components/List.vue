@@ -7,7 +7,8 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="btn-list">
           <div class="btn-wrapper">
-            <div class="btn">北京</div>
+            <!--            使用vuex获取当前城市数据-->
+            <div class="btn">{{ this.$store.state.city }}</div>
           </div>
         </div>
       </div>
