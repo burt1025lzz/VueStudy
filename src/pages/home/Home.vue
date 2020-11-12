@@ -21,6 +21,7 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 export default {
   name: 'Home',
@@ -34,20 +35,22 @@ export default {
   },
   data () {
     return {
+      lastCity: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
       weekendList: []
     }
   },
-  mounted () {
-    this.getHomeInfo()
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     getHomeInfo () {
       // 此处将访问/api的路径重定向到/static/mock中
       // 配置信息在/config/index.js中
-      axios.get('/api/index.json')
+      // 请求数据是加上城市参数
+      axios.get('/api/index.json?' + this.city)
         .then(this.getHomeInfoSuc)
     },
     getHomeInfoSuc (res) {
@@ -60,6 +63,19 @@ export default {
         this.recommendList = data.recommendList
         this.weekendList = data.weekendList
       }
+    }
+  },
+  mounted () {
+    // 临时缓冲变量
+    this.lastCity = this.city
+    this.getHomeInfo()
+  },
+  // 使用keep-alive标签会多出一个activated生命周期钩子
+  activated () {
+    // 通过临时缓冲变量检测是否应该有数据更新
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
     }
   }
 }
