@@ -32,17 +32,18 @@ export default {
       }
     }
   },
-  activated () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
   // 重要!!!在为全局事件绑定时,页面销毁或者是隐藏时一定要解绑事件
-  deactivated () {
+  destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     handleScroll () {
       // 页面滚动距离
-      const top = document.documentElement.scrollTop
+      // 后二者为解决部分手机不支持documentElement所做兼容
+      const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 60) {
         let opacity = top / 140
         opacity = opacity > 1 ? 1 : opacity
