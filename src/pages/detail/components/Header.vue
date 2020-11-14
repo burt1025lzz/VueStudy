@@ -35,6 +35,10 @@ export default {
   activated () {
     window.addEventListener('scroll', this.handleScroll)
   },
+  // 重要!!!在为全局事件绑定时,页面销毁或者是隐藏时一定要解绑事件
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     handleScroll () {
       // 页面滚动距离
