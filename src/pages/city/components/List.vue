@@ -85,10 +85,6 @@ export default {
     },
     ...mapMutations(['changeCity'])
   },
-  // 解决个别情况无法滚动问题
-  updated () {
-    this.scroll.refresh()
-  },
   // 通过watch监听器监听letter的变化
   watch: {
     letter () {
