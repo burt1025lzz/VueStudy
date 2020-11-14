@@ -1,14 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container" @click="handleGalleryClick">
     <div class="wrapper">
       <swiper :options="swiperOptions">
-        <swiper-slide>
+        <swiper-slide
+          v-for="(item, index) in imgs"
+          :key="index"
+        >
           <img class="gallery-img"
-               src="https://imgs.qunarzz.com/sight/p0/1509/11/11f48afdd282f695.img.jpg_r_800x800_979033db.jpg"/>
-        </swiper-slide>
-        <swiper-slide>
-          <img class="gallery-img"
-               src="https://imgs.qunarzz.com/sight/p0/1709/59/59d6fe2a3dcb69ffa3.img.png_r_800x800_c45347b3.png"/>
+               :src="item"/>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -19,12 +18,32 @@
 <script>
 export default {
   name: 'CommonGallery',
+  props: {
+    imgs: {
+      type: Array,
+      // 默认值是函数,要有返回值
+      default () {
+        return []
+      }
+    }
+  },
   data () {
     return {
       swiperOptions: {
         pagination: '.swiper-pagination',
-        paginationType: 'fraction'
+        // 分页样式
+        paginationType: 'fraction',
+        // 监听父组件变化刷新
+        observeParents: true,
+        // 监听自己变化刷新
+        observer: true
       }
+    }
+  },
+  methods: {
+    handleGalleryClick () {
+      // 子组件向父组件传值
+      this.$emit('close')
     }
   }
 }
